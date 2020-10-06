@@ -1,15 +1,15 @@
-Function Deploy-PSPortable {
+Function Deploy-PSPortableLight {
 
     #Remove old package
-    if (Test-Path $env:ProgramData\PS7x64) {
-        Remove-Item $env:ProgramData\PS7x64 -Recurse -Force
+    if (Test-Path $env:ProgramData\PS7x64Light) {
+        Remove-Item $env:ProgramData\PS7x64Light -Recurse -Force
     }
 
     #Download new package as zip file
     Function Invoke-DLPSPortable {
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-        $url = "https://github.com/thetaylorlee/psportable/archive/master.zip"
-        $output = "$env:ProgramData\PS7x64.zip"
+        $url = "https://github.com/TheTaylorLee/PSPortableLight/archive/main.zip"
+        $output = "$env:ProgramData\PS7x64Light.zip"
         $wc = New-Object System.Net.WebClient
         $wc.DownloadFile($url, $output)
     }; Invoke-DLPSPortable
@@ -64,12 +64,12 @@ Function Deploy-PSPortable {
         }
     }
 
-    Invoke-Unzip -zipfile "$env:ProgramData\PS7x64.zip" -outpath "$env:ProgramData"
-    Rename-Item "$env:ProgramData\PSPortable-master" "$env:ProgramData\PS7x64"
-    Remove-Item "$env:ProgramData\PS7x64.zip" -Force
+    Invoke-Unzip -zipfile "$env:ProgramData\PS7x64Light.zip" -outpath "$env:ProgramData"
+    Rename-Item "$env:ProgramData\PSPortableLight-Main" "$env:ProgramData\PS7x64Light"
+    Remove-Item "$env:ProgramData\PS7x64Light.zip" -Force
 
     #Pin shortcut to taskbar
-    Invoke-Item "$env:ProgramData\PS7x64\PS7-x64\pwsh.exe.lnk"
+    Invoke-Item "$env:ProgramData\PS7x64Light\PS7-x64\pwsh.exe.lnk"
     Function Show-Statement {
         Write-Host "
     ***************************************************
@@ -83,4 +83,4 @@ Function Deploy-PSPortable {
     }
     Show-Statement
 
-}; Deploy-PSPortable
+}; Deploy-PSPortableLight
