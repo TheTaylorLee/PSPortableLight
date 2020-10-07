@@ -80,4 +80,3 @@ if (Test-Path($ChocolateyProfile)) {
 
 $ErrorActionPreference = 'Continue'
 Import-Module AdminToolbox
-Import-Module BetterCredentials
