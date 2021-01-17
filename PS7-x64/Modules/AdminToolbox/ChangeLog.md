@@ -126,3 +126,4 @@
 * **7.1.0.0**  Added function Open-AdminMMC
 * **7.1.1.0**  Updated Required module versions
 * **7.1.2.0**  Updated Required module versions
+* **7.1.3.0**  Updated multiple module dependencies and updated get-info function

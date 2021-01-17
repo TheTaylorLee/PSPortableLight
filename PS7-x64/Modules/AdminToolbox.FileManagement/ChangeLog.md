@@ -12,3 +12,4 @@
 * **1.1.5.0** Exported the newley added functions in the manifest
 * **1.2.0.0** Tested and marked Core compatbile
 * **1.2.1.0** Modified Remove-DisabledADProfiles to use a Try/Catch
+* **1.3.0.0** Added Get-ShareReport Function that combines ntfs and share permissions reports

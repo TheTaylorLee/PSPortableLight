@@ -30,3 +30,4 @@
 * **2.3.8.3** Updated Get-PublicIP to work in multiple powershell versions using the same command
 * **2.4.0.0** Tested and marked Core compatbile
 * **2.4.1.0** Added the Function Invoke-Monitor
+* **2.5.0.0** Add the Function Show-IPInfo

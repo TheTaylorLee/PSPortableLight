@@ -9,7 +9,9 @@ function Get-Info {
     Write-Host "To Get Functions and Command Help..."                                                       -ForegroundColor green
     Write-Host "
 Get-All                           ..Gets all module Functions
-Get-Full                          ..Gets full help for selected module command
+Get-Filename                      ..Gets a gui for selecting a file
+Get-Foldername                    ..Gets a gui for selecting a folder
+Get-Full                          ..Gets full help for selected functions
 Get-ModuleAliases                 ..Gets aliases for AdminToolbox modules
 Invoke-Show                       ..Invokes a grid Gui for implementing show command
 Open-AdminMMC                     ..Opens Microsoft Management Console with multiple snap-ins loaded
