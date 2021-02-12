@@ -97,6 +97,18 @@ Function Set-WindowSize {
     $host.UI.RawUI.WindowSize = New-Object System.Management.Automation.Host.size($Width, $Height)
 }
 Set-WindowSize
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Imports the Exchange Online Module
+$ErrorActionPreference = 'SilentlyContinue'
+$CreateEXOPSSession = (Get-ChildItem -Path $Env:LOCALAPPDATA\Apps\2.0* -Filter CreateExoPSSession.ps1 -Recurse -ErrorAction SilentlyContinue -Force | Select-Object -Last 1).DirectoryName
+Import-Module  "$CreateEXOPSSession\CreateExoPSSession.ps1" -Force
+$ErrorActionPreference = 'Continue'
+
+#Clear EXO Script obnoxiousness
+Clear-Host
+
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Downloads folder variable
