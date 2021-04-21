@@ -39,7 +39,7 @@ Function Deploy-PSPortable {
         Invoke-Unzip -zipfile "$env:ProgramData\PS7x64.zip" -outpath "$env:ProgramData"
         Rename-Item "$env:ProgramData\PSPortable-master" "$env:ProgramData\PS7x64"
         Write-Host "[+] PSPortable Package unzipped to path $env:ProgramData\PS7x64" -ForegroundColor Green
-        Remove-Item "$env:ProgramData\PS7x64.zip" -Force
+        Remove-Item "$env:ProgramData\PS7x64.zip" -Force -ErrorAction SilentlyContinue
         Write-Host "[+] PSPortable Package zip file deleted" -ForegroundColor Green
 
         #Pin shortcut to taskbar
