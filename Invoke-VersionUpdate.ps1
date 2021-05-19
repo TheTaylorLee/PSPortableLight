@@ -14,7 +14,7 @@ Function Invoke-VersionUpdate {
 
     #Remove old package
     #Remove this error action if having issues to potentionally find the problem
-    Remove-Item $env:ProgramData\PS7x64Light -Recurse -Force -ErrorAction 'silentlycontinue'
+    get-childitem $env:ProgramData\PS7x64Light | Remove-Item -Recurse -Force -ErrorAction 'silentlycontinue'
 
     #Download new package as zip file
     Function Invoke-DLPSPortableLight {
