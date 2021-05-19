@@ -48,11 +48,7 @@ if ($query.Version -le "2.2") {
 }
 
 Function Set-PSReadlineIntellisenseOptions {
-    #Set colors for intellisense prediction
-    Set-PSReadLineOption -Colors @{
-        InlinePrediction = '#85C1E9'
-        ListPrediction   = '#27FF00'
-    }
+
     #Set viewStyle based on powershell version requirements
     if ($psversiontable.psversion.major -ge 7 ) {
         Set-PSReadLineOption -PredictionViewStyle ListView
@@ -115,6 +111,25 @@ Set-PSReadLineKeyHandler -Key F12 `
     }
 }
 
+#Set Colors
+Set-PSReadLineOption -Colors @{ Command = "`e[97m" }
+Set-PSReadLineOption -Colors @{ Comment = "`e[32m" }
+Set-PSReadLineOption -Colors @{ ContinuationPrompt = "`e[37m" }
+Set-PSReadLineOption -Colors @{ Emphasis = "`e[96m" }
+Set-PSReadLineOption -Colors @{ Error = "`e[91m" }
+Set-PSReadLineOption -Colors @{ Keyword = "`e[92m" }
+Set-PSReadLineOption -Colors @{ ListPredictionSelected = "`e[48;5;238m" }
+Set-PSReadLineOption -Colors @{ Member = "`e[97m" }
+Set-PSReadLineOption -Colors @{ Number = "`e[97m" }
+Set-PSReadLineOption -Colors @{ Operator = "`e[90m" }
+Set-PSReadLineOption -Colors @{ Parameter = "`e[90m" }
+Set-PSReadLineOption -Colors @{ Selection = "`e[30;47m" }
+Set-PSReadLineOption -Colors @{ String = "`e[36m" }
+Set-PSReadLineOption -Colors @{ Type = "`e[37m" }
+Set-PSReadLineOption -Colors @{ Variable = "`e[92m" }
+Set-PSReadLineOption -Colors @{ ListPrediction = "`e[38;2;39;255;0m" }
+Set-PSReadLineOption -Colors @{ InlinePrediction = "`e[38;2;133;193;233m" }
+
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Function Set-WindowSize {
@@ -160,6 +175,31 @@ Function Set-WindowSize {
     $host.UI.RawUI.WindowSize = New-Object System.Management.Automation.Host.size($Width, $Height)
 }
 Set-WindowSize
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Function Invoke-VersionCheck {
+
+
+    $CurrentVersion = Get-Content "C:\ProgramData\PS7x64Light\version.txt"
+
+    $VersionCheck = (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/master/version.txt -Headers @{"Cache-Control" = "no-cache" }).content | Select-String $CurrentVersion
+
+    if ($VersionCheck) {
+    }
+    else {
+        Write-Host " "
+        Write-Host "A new version of PSPortableLight has been detected" -ForegroundColor Green
+        Write-Warning "This will close all open sessions of ConEmu and pwsh.exe if run"
+        $query = Read-Host "Would you like to update now? (yes/no)"
+
+        if ($query -eq 'yes') {
+            Start-Process -FilePath powershell.exe -ArgumentList "-executionpolicy bypass", -noprofile, -NoLogo, "-File $env:ProgramData\PS7x64\Invoke-VersionUpdate.ps1"
+        }
+        else {
+        }
+    }
+}
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 
