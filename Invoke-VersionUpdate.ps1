@@ -19,7 +19,7 @@ Function Invoke-VersionUpdate {
     #Download new package as zip file
     Function Invoke-DLPSPortableLight {
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-        $url = "https://github.com/thetaylorlee/psportablelight/archive/master.zip"
+        $url = "https://github.com/TheTaylorLee/PSPortableLight/archive/main.zip"
         $output = "$env:ProgramData\PS7x64Light.zip"
         $wc = New-Object System.Net.WebClient
         $wc.DownloadFile($url, $output)
@@ -64,5 +64,5 @@ Function Invoke-VersionUpdate {
 
     #Pin shortcut to taskbar
     Invoke-Item "$env:ProgramData\PS7x64Light\PS7-x64\pwsh.exe.lnk"
-    #exit
+    exit
 }; Invoke-VersionUpdate
