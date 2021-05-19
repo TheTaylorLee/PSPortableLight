@@ -14,7 +14,7 @@ Function Invoke-VersionUpdate {
 
     #Remove old package
     #Remove this error action if having issues to potentionally find the problem
-    get-childitem $env:ProgramData\PS7x64Light | Remove-Item -Recurse -Force -ErrorAction 'silentlycontinue'
+    Get-ChildItem $env:ProgramData\PS7x64Light | Remove-Item -Recurse -Force -ErrorAction 'silentlycontinue'
 
     #Download new package as zip file
     Function Invoke-DLPSPortableLight {
@@ -58,9 +58,9 @@ Function Invoke-VersionUpdate {
 
     Invoke-Unzip2 -zipfile "$env:ProgramData\PS7x64Light.zip" -outpath "$env:ProgramData"
     #Rename-Item "$env:ProgramData\PSPortable-master" "$env:ProgramData\PS7x64"
-    Robocopy.exe $env:ProgramData\PSPortableLight-master $env:ProgramData\PS7x64Light /mir /COPY:DATSO /r:1 /w:1
+    Robocopy.exe "$env:ProgramData\PSPortableLight-main" "$env:ProgramData\PS7x64Light" /mir /COPY:DATSO /r:1 /w:1
     Remove-Item "$env:ProgramData\PS7x64Light.zip" -Force
-    Remove-Item "$env:ProgramData\PSPortableLight-master" -Force -Recurse
+    Remove-Item "$env:ProgramData\PSPortableLight-main" -Force -Recurse
 
     #Pin shortcut to taskbar
     Invoke-Item "$env:ProgramData\PS7x64Light\PS7-x64\pwsh.exe.lnk"
