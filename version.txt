@@ -1,2 +1,1 @@
-#This file exists as a way to implement version checking when launching an outdated version of PSPortableLight
 Version=1.0.0
