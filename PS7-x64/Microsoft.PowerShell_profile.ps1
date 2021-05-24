@@ -188,8 +188,13 @@ Function Invoke-VersionCheck {
     if ($VersionCheck) {
     }
     else {
+        (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/master/Changelog.md -Headers @{"Cache-Control" = "no-cache" }).content
         Write-Host " "
-        Write-Host "A new version of PSPortableLight has been detected" -ForegroundColor Green
+
+        Write-Host "Current $CurrentVersion" -ForegroundColor Green
+
+        Write-Host " "
+        Write-Host "A new version of PSPortable has been detected" -ForegroundColor Green
         Write-Warning "This will close all open sessions of ConEmu and pwsh.exe if run"
         $query = Read-Host "Would you like to update now? (yes/no)"
 
