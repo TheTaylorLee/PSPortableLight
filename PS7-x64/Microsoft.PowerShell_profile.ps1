@@ -183,12 +183,12 @@ Function Invoke-VersionCheck {
 
     $CurrentVersion = Get-Content "C:\ProgramData\PS7x64Light\version.txt"
 
-    $VersionCheck = (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/master/version.txt -Headers @{"Cache-Control" = "no-cache" }).content | Select-String $CurrentVersion
+    $VersionCheck = (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/main/version.txt -Headers @{"Cache-Control" = "no-cache" }).content | Select-String $CurrentVersion
 
     if ($VersionCheck) {
     }
     else {
-        (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/master/Changelog.md -Headers @{"Cache-Control" = "no-cache" }).content
+        (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/main/Changelog.md -Headers @{"Cache-Control" = "no-cache" }).content
         Write-Host " "
 
         Write-Host "Current $CurrentVersion" -ForegroundColor Green
