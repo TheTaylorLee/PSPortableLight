@@ -1,4 +1,4 @@
-﻿#BKPSPROFILE
+﻿#BKPSPROFILE PSPortableLight
 
 $ErrorActionPreference = 'SilentlyContinue'
 
