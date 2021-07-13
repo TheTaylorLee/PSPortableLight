@@ -172,7 +172,7 @@ Clear-Host
 
 Function Invoke-VersionCheck {
 
-    $CurrentVersion = Get-Content "C:\ProgramData\PS7x64Light\PS7x64\version.txt"
+    $CurrentVersion = Get-Content "C:\ProgramData\PS7x64Light\version.txt"
 
     $VersionCheck = (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortable/master/version.txt -Headers @{"Cache-Control" = "no-cache" } -UseBasicParsing).content | Select-String $CurrentVersion
 
