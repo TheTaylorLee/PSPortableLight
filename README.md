@@ -8,7 +8,7 @@ This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPort
 
 * *__To get started__*
   * Open an admin PowerShell prompt
-  * Run the below function
+  * Run the below script
 
 ```Powershell
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -17,7 +17,7 @@ This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPort
 
 * *__To Upgrade__*
   * Open an admin PowerShell prompt
-  * Run the below function
+  * Run the below script
 
 ```Powershell
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
