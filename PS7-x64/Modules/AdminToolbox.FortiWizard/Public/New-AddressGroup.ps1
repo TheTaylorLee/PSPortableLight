@@ -18,7 +18,7 @@ Function New-AddressGroup {
     New-AddressGroup @params
 
     .Example
-    This example generates and SSH session and invokes the output of this function against that sessions.
+    This example generates an SSH session and invokes the output of this function against that session.
 
     New-SSHSession -computername 192.168.0.1
 
@@ -61,13 +61,10 @@ Function New-AddressGroup {
     )
 
     Write-Output "
-#Create Address Group
-
 config firewall addrgrp
     edit ""$GroupName""
         set member $AddressNames
         set allow-routing enable
     next
-end
-"
+end"
 }

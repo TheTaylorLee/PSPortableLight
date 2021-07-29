@@ -13,7 +13,7 @@ Function Disable-SipALG {
     Disable-SipALG -LessThanMajor6Minor2
 
     .Example
-    This example generates and SSH session and invokes the output of this function against that sessions.
+    This example generates an SSH session and invokes the output of this function against that session.
 
     New-SSHSession -computername 192.168.0.1
     $command = Disable-SipALG -LessThanMajor6Minor2
@@ -44,8 +44,6 @@ Function Disable-SipALG {
 
     if ($LessThanMajor6Minor2) {
         Write-Output "
-#Disable Sip Settings
-
 config system settings
     set sip-helper disable
     set sip-nat-trace disable
@@ -67,8 +65,6 @@ end"
 
     else {
         Write-Output "
-#Disable Sip Settings
-
 config system settings
     set default-voip-alg-mode kernel-helper-based
     set sip-expectation disable
