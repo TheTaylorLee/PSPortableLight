@@ -213,7 +213,7 @@ if ($t1 -or $t2 -eq $true) {
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 #Handling Bugged experimental features of psreadline
-#When upgrading powershell 7 versions and psreadline check to see if these has been addressed.
+#When upgrading powershell 7 versions and psreadline check to see if these have been addressed.
 
 #This is a work around to this issue. https://github.com/PowerShell/PowerShell/issues/14506
 function reset-colors {
@@ -245,10 +245,12 @@ if ($Suggestions) {
     #Getting rid of annoying suggestion
     Disable-ExperimentalFeature  –Name PSCommandNotFoundSuggestion | Out-Null
 }
-#BKPSPROFILE PSAnsiRendering causing console color issues supposedly fixed in newest powershell and psreadline versions
+#BKPSPROFILE PSAnsiRendering causing console color issues supposedly fixed in newest powershell and psreadline versions.
+#Have changed this from disable to enable.
+#If the problem persists consider reverting, otherwise remove in the future.
 if ($AnsiRendering) {
     #Hopefully eliminates hardcoded console color changes when using write-verbose, write-warning, etc.
-    Disable-ExperimentalFeature  –Name PSAnsiRendering | Out-Null
+    Enable-ExperimentalFeature  –Name PSAnsiRendering | Out-Null
 }
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
