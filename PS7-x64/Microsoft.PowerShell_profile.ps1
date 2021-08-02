@@ -204,7 +204,7 @@ Function Invoke-VersionCheck {
 
 Function Update-Console {
 
-    Start-Process -FilePath powershell.exe -ArgumentList "-executionpolicy bypass", -noprofile, -NoLogo, "-File $env:ProgramData\PS7x64\Invoke-VersionUpdate.ps1"
+    Start-Process -FilePath powershell.exe -ArgumentList "-executionpolicy bypass", -noprofile, -NoLogo, "-File $env:ProgramData\PS7x64Light\Invoke-VersionUpdate.ps1"
 
 }
 
