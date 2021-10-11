@@ -1,5 +1,3 @@
-# This is no longer maintained. Only PSPortable will be updated going forward.
-
 # PSPortableLight
 
 Deploys a portable PowerShell package with often used modules.
