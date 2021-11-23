@@ -4,6 +4,7 @@ Function Invoke-VersionUpdate {
 
     try {
         taskkill /im pwsh.exe /F
+        taskkill /im windowsterminal.exe /F
         taskkill /im ConEMU.exe /F
         taskkill /im ConEMUC64.exe /F
     }
