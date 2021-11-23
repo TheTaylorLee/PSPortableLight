@@ -1,6 +1,4 @@
-﻿#BKPSPROFILE PSPortableLight
-
-$ErrorActionPreference = 'SilentlyContinue'
+﻿$ErrorActionPreference = 'SilentlyContinue'
 
 function reset-colors {
     #Set Colors
@@ -27,30 +25,26 @@ function reset-colors {
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function prompt {
-    reset-colors
-
-    $location = Get-Location
-    Write-Host -NoNewline "$(HOSTNAME.EXE) "                  -ForegroundColor Green
-    Write-Host -NoNewline '~'                                 -ForegroundColor Yellow
-    Write-Host -NoNewline $(Get-Location).Path.Split('\')[-1] -ForegroundColor Cyan
-    Write-Host -NoNewline ">" -ForegroundColor Green
-
-    $Adminp = [bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544")
-    $ver = [string]$host.Version.major + '.' + [string]$host.version.minor + '.' + [string]$host.version.build + "-" + [string]$host.version.PSSemVerPreReleaseLabel
-    $host.UI.RawUI.WindowTitle = "$ver" + ' - Admin is ' + "$Adminp" + " - $location"
-
-    Return " "
+    $(
+        if ((Get-Module oh-my-posh) -and (Get-Module terminal-icons) -and (Get-Module posh-git)) {
+            Set-PoshPrompt blue-owl
+        }
+        else {
+            $location = Get-Location
+            Write-Host -NoNewline "$(HOSTNAME.EXE) "                  -ForegroundColor Green
+            Write-Host -NoNewline '~'                                 -ForegroundColor Yellow
+            Write-Host -NoNewline $(Get-Location).Path.Split('\')[-1] -ForegroundColor Cyan
+            Write-Host -NoNewline ">" -ForegroundColor Green
+            $Adminp = [bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544")
+            $ver = [string]$host.Version.major + '.' + [string]$host.version.minor + '.' + [string]$host.version.build + "-" + [string]$host.version.PSSemVerPreReleaseLabel
+            $host.UI.RawUI.WindowTitle = "$ver" + ' - Admin is ' + "$Adminp" + " - $location"
+            Return " "
+        }
+    )
 }
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 
-<#Default
-    Set-PSReadLineOption -BellStyle Audible
-    Set-PSReadLineKeyHandler -Chord Tab -Function TabCompleteNext
-    Set-PSReadLineKeyHandler -Chord Ctrl+Space -Function MenuComplete
-    Set-PSReadLineOption -editmode Windows
-#>
-#Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 Set-PSReadLineOption -BellStyle None -EditMode Windows
 Set-PSReadLineKeyHandler -Chord Tab -Function MenuComplete
 
@@ -183,14 +177,14 @@ Clear-Host
 
 Function Invoke-VersionCheck {
 
-    $CurrentVersion = Get-Content "C:\ProgramData\PS7x64Light\version.txt"
+    $CurrentVersion = Get-Content "C:\ProgramData\PS7x64\version.txt"
 
-    $VersionCheck = (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/main/version.txt -Headers @{"Cache-Control" = "no-cache" } -UseBasicParsing).content | Select-String $CurrentVersion
+    $VersionCheck = (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortable/master/version.txt -Headers @{"Cache-Control" = "no-cache" } -UseBasicParsing).content | Select-String $CurrentVersion
 
     if ($VersionCheck) {
     }
     else {
-        (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/main/Changelog.md -Headers @{"Cache-Control" = "no-cache" } -UseBasicParsing).content
+        (Invoke-WebRequest https://raw.githubusercontent.com/TheTaylorLee/PSPortable/master/Changelog.md -Headers @{"Cache-Control" = "no-cache" } -UseBasicParsing).content
         Write-Host " "
 
         Write-Host "Current $CurrentVersion" -ForegroundColor Green
@@ -204,7 +198,7 @@ Function Invoke-VersionCheck {
 
 Function Update-Console {
 
-    Start-Process -FilePath powershell.exe -ArgumentList "-executionpolicy bypass", -noprofile, -NoLogo, "-File $env:ProgramData\PS7x64Light\Invoke-VersionUpdate.ps1"
+    Start-Process -FilePath powershell.exe -ArgumentList "-executionpolicy bypass", -noprofile, -NoLogo, "-File $env:ProgramData\PS7x64\Invoke-VersionUpdate.ps1"
 
 }
 
@@ -223,6 +217,7 @@ if ($t1 -or $t2 -eq $true) {
 }
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
+
 #Handling Bugged experimental features of psreadline
 #When upgrading powershell 7 versions and psreadline check to see if these have been addressed.
 
@@ -235,15 +230,20 @@ if ($Suggestions) {
     #Getting rid of annoying suggestion
     Disable-ExperimentalFeature  –Name PSCommandNotFoundSuggestion -WarningAction 'silent' | Out-Null
 }
-#BKPSPROFILE PSAnsiRendering and beta versions of psreadline causing console color issues. Disabling this feature provides some relief
+#PSAnsiRendering and beta versions of psreadline causing console color issues. Disabling this feature provides some relief
 if ($AnsiRendering) {
     #Hopefully eliminates hardcoded console color changes when using write-verbose, write-warning, etc.
     Disable-ExperimentalFeature  –Name PSAnsiRendering -WarningAction 'silent' | Out-Null
     Disable-ExperimentalFeature  –Name PSAnsiprogress -WarningAction 'silent' | Out-Null
 }
-
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+try {
+    Import-Module terminal-icons
+    Import-Module posh-git
+    Import-Module oh-my-posh
+}
+catch {}
 Import-Module AdminToolbox
 Import-Module BetterCredentials
 Import-Module MyFunctions
