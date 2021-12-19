@@ -29,7 +29,7 @@ This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPort
 
   * Open PSPortable or PSPortablelight
   * Run the function Install-Font
-  * A window will pop-ip. Click install in that window.
+  * A window will pop-up. Click install in that window.
   * Close the pop-up window
   * Right click the title bar of the open PWSH window and select properties
   * Click the font tab
