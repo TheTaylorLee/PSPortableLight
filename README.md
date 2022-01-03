@@ -27,8 +27,7 @@ This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPort
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 (Invoke-Webrequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/main/Invoke-VersionUpdate.ps1 -usebasicparsing).content | Invoke-Expression
 ```
-
-* *__Fonts__* \
+* *__To install fonts__* \
   This portable Powershell Package uses Oh-My-Posh. This means you will require a nerd font to not see question marks where symbols would be seen. Follow the below steps to install "Meslo LG M Regular Nerd Font Complete Mono". If you do not like that font you can get your own from https://www.nerdfonts.com/.
 
   * Open PSPortable or PSPortablelight
@@ -39,3 +38,9 @@ This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPort
   * Click the font tab
   * Select "MesloLGM Nerd Font Mono" and hit ok
   * You are now done. If you are using windows terminal or another terminal, you will need to modify the default font there as well.
+
+* *__To install git__*
+  * Open PSPortable and paste the below script
+```Powershell
+Install-chocolatey
+choco install git
