@@ -2,10 +2,6 @@
 
 Deploys a portable PowerShell package with often used modules.
 
-<p align="Left">
-<a href="https://open.vscode.dev/TheTaylorLee/PSPortableLight"><img src="https://open.vscode.dev/badges/open-in-vscode.svg"></a>
-</p>
-
 This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPortable) for quicker deployment and a smaller install.
 
 
