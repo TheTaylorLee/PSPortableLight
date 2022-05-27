@@ -1,6 +1,6 @@
 # PSPortableLight
 
-Deploys a portable PowerShell package with often used modules.
+Deploys a portable PowerShell package with often used modules. When updates are released, launching PSPortable will present a changelog and prompt to use update-console to update if desired.
 
 This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPortable) for quicker deployment and a smaller install.
 
@@ -13,15 +13,6 @@ This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPort
   ```Powershell
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
   (Invoke-Webrequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/main/Deploy-PSPortableLight.ps1 -usebasicparsing).content | Invoke-Expression
-  ```
-
-* *__To Upgrade__*
-  * Open an admin PowerShell prompt
-  * Run the below script
-
-  ```Powershell
-  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-  (Invoke-Webrequest https://raw.githubusercontent.com/TheTaylorLee/PSPortableLight/main/Invoke-VersionUpdate.ps1 -usebasicparsing).content | Invoke-Expression
   ```
 
 * *__Using PSPortable or PSPortableLight in Terminal__*
