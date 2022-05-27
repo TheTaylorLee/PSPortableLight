@@ -1,6 +1,6 @@
 # PSPortableLight
 
-Deploys a portable PowerShell package with often used modules. When updates are released, launching PSPortable will present a changelog and prompt to use update-console to update if desired.
+Deploys a portable PowerShell package with often used modules. When updates are released, launching PSPortableLight will present a changelog and prompt to use update-console to update if desired.
 
 This is a lighter version of [PSPortable](https://github.com/TheTaylorLee/PSPortable) for quicker deployment and a smaller install.
 
