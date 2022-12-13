@@ -1,5 +1,7 @@
 # Deprecated 2022/12/05
-I will no longer be updating PSPortableLight. Going forward I will only maintain PSPortable. This still works at this time and will likely continue to function for the forseeable future.
+I will no longer be updating PSPortableLight. Going forward I will only maintain PSPortable. PSPortable has been restructured to provide the option of installing a minimum number of modules or many modules.
+
+This still works at this time and will likely continue to function for the forseeable future.
 
 # PSPortableLight
 
